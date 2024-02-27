@@ -9,7 +9,7 @@ const UserBlogs = () => {
 
   const sentrequsest = async () => {
     const data = axios
-      .get(`blog-backend-1ou4.vercel.app/blog/user/${id}`)
+      .get(`https://blog-backend-1ou4.vercel.app/blog/user/${id}`)
       .then((data) => setblog(data.data))
       .catch((err) => console.log(err));
     return data;
