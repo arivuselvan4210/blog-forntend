@@ -12,7 +12,7 @@ const Auth = () => {
   const [inputs, setinputs] = useState({ name: "", email: "", password: "" });
   const sentrequst = async (type = "singin") => {
     await axios
-      .post(`http://localhost:5000/${type}`, {
+      .post(`blog-backend-1ou4.vercel.app/${type}`, {
         name: inputs.name,
         email: inputs.email,
         password: inputs.password,
