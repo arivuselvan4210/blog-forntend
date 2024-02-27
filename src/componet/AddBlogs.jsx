@@ -13,7 +13,7 @@ const AddBlogs = () => {
   });
   const sentreqest = async () => {
     const data = await axios
-      .post("blog-backend-1ou4.vercel.app/blog/add", {
+      .post("https://blog-backend-1ou4.vercel.app/blog/add", {
         titale: blogs.titale,
         desc: blogs.desc,
         img: blogs.img,
