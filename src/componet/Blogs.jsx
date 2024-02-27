@@ -6,7 +6,7 @@ const Blogs = () => {
 
   const sentreq = async () => {
     const data = await axios
-      .get("blog-backend-1ou4.vercel.app/blog/getall")
+      .get("https://blog-backend-1ou4.vercel.app/blog/getall")
 
       .catch((err) => console.log(err));
     return data;
