@@ -12,7 +12,7 @@ const BlogDetailes = () => {
   });
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/blog/${id}`)
+      .get(`blog-backend-1ou4.vercel.app/blog/${id}`)
       .then((res) => setblogs(res.data.blogs));
   }, [id]);
 
