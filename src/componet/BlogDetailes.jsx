@@ -12,13 +12,13 @@ const BlogDetailes = () => {
   });
   useEffect(() => {
     axios
-      .get(`blog-backend-1ou4.vercel.app/blog/${id}`)
+      .get(`https://blog-backend-1ou4.vercel.app/blog/${id}`)
       .then((res) => setblogs(res.data.blogs));
   }, [id]);
 
   const sentreqest = async () => {
     const data = await axios
-      .put(`blog-backend-1ou4.vercel.app/blog/update/${id}`, {
+      .put(`https://blog-backend-1ou4.vercel.app/blog/update/${id}`, {
         titale: blogs.titale,
         desc: blogs.desc,
         user: blogs.user,
