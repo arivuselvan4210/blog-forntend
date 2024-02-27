@@ -18,7 +18,7 @@ const BlogDetailes = () => {
 
   const sentreqest = async () => {
     const data = await axios
-      .put(`http://localhost:5000/blog/update/${id}`, {
+      .put(`blog-backend-1ou4.vercel.app/blog/update/${id}`, {
         titale: blogs.titale,
         desc: blogs.desc,
         user: blogs.user,
