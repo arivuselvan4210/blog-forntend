@@ -24,7 +24,7 @@ export default function RecipeReviewCard({
 }) {
   const handeldelete = async () => {
     await axios
-      .delete(`http://localhost:5000/blog/${id}`)
+      .delete(`blog-backend-1ou4.vercel.app/blog/${id}`)
 
       .catch((err) => console.log(err));
   };
