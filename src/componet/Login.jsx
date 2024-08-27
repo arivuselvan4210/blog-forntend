@@ -5,34 +5,36 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { authacton } from "../store/intex";
 import { auth } from "../api/api";
-import { dark } from "@mui/material/styles/createPalette";
 
 const Auth = () => {
   const dispatch = useDispatch();
   const navigat = useNavigate();
-  const [inputs, setinputs] = useState({ name: "", email: "", password: "" });
+  const [inputs, setinputs] = useState({ email: "", password: "" });
   const [err, seterr] = useState({
-    name: "",
     email: "",
     password: "",
   });
   const sentrequst = async () => {
     await axios
-      .post(`${auth}/singup`, {
-        name: inputs.name,
+      .post(`${auth}/singin`, {
         email: inputs.email,
         password: inputs.password,
       })
       .then((res) => res.data)
       .then((data) => {
-        console.log(data);
         localStorage.setItem("user", data._id);
       })
       .then(() => {
         navigat("/blog");
         dispatch(authacton.login());
       })
-      .catch((err) => console.log(err));
+      .catch((erro) => {
+        const errrr = {};
+        errrr.email = erro.response?.data?.message;
+        // alert(errrr?.email);
+        seterr(errrr);
+        console.log(erro);
+      });
   };
   const handelchange = (e) => {
     setinputs((prevState) => ({
@@ -42,23 +44,17 @@ const Auth = () => {
   };
   const hanelsubmit = (e) => {
     e.preventDefault();
-    const errr = valitaion(inputs);
-    seterr(errr);
-    if (Object.keys(errr).length === 0) {
-      sentrequst("singup");
+    const err = valitaiont(inputs);
+    seterr(err);
+    if (Object.keys(err).length === 0) {
+      sentrequst();
     }
   };
   const handwitch = () => {
-    navigat("/auth/login");
+    navigat("/auth");
   };
-
-  const valitaion = (user) => {
+  const valitaiont = (user) => {
     const erros = {};
-    if (!user.name.trim()) {
-      erros.name = "please Enter Your Name";
-    } else if (user.name.length < 4) {
-      erros.name = "Username must be at least 4 characters long";
-    }
     if (!user.email.trim()) {
       erros.email = "please Enter Your Name";
     } else if (user.email.length < 4) {
@@ -71,7 +67,6 @@ const Auth = () => {
     }
     return erros;
   };
-
   return (
     <div>
       <form onSubmit={hanelsubmit}>
@@ -88,15 +83,7 @@ const Auth = () => {
           maxWidth={400}
           margin={"auto"}
         >
-          <Typography variant="h2">SingUp</Typography>
-
-          <TextField
-            name="name"
-            value={inputs.name}
-            onChange={handelchange}
-            placeholder="name"
-          />
-          {err.name && <span style={{ fontSize: "12px" }}>{err.name}</span>}
+          <Typography variant="h2">LogIn</Typography>
           <TextField
             name="email"
             value={inputs.email}
@@ -119,7 +106,7 @@ const Auth = () => {
             Submit
           </Button>
           <Button variant="contained" onClick={handwitch}>
-            change to Switch to Login
+            change to Switch to SingUp
           </Button>
         </Box>
       </form>

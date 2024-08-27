@@ -1,4 +1,5 @@
 import axios from "axios";
+import { getUser } from "../api/api";
 import React, { useEffect, useState } from "react";
 import Blog from "./Blogg";
 
@@ -8,8 +9,8 @@ const UserBlogs = () => {
   const isuser = id === blog._id;
 
   const sentrequsest = async () => {
-    const data = axios
-      .get(`https://blog-backend-1ou4.vercel.app/blog/user/${id}`)
+    const data = await axios
+      .get(`${getUser}/${id}`)
       .then((data) => setblog(data.data))
       .catch((err) => console.log(err));
     return data;

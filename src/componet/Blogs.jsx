@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import Blog from "./Blogg";
 import axios from "axios";
+import { getAllBolgs } from "../api/api";
+
 const Blogs = () => {
   const [blog, setblog] = useState("");
 
   const sentreq = async () => {
     const data = await axios
-      .get("https://blog-backend-1ou4.vercel.app/blog/getall")
+      .get(getAllBolgs)
 
       .catch((err) => console.log(err));
     return data;

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   AppBar,
   Button,
@@ -12,12 +12,14 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { authacton } from "../store/intex";
 const Header = () => {
+  const navigator = useNavigate();
   const patch = useDispatch();
   const [value, setvalue] = useState(0);
   const isloading = useSelector((state) => state.isloaing);
   const logout = () => {
     patch(authacton.logout());
     localStorage.clear();
+    navigator("/");
   };
   useEffect(() => {
     if (localStorage.getItem("user")) {
@@ -48,7 +50,7 @@ const Header = () => {
               <Button LinkComponent={Link} to="/auth" variant="contained">
                 singup
               </Button>
-              <Button LinkComponent={Link} to="/auth" variant="contained">
+              <Button LinkComponent={Link} to="/auth/login" variant="contained">
                 login
               </Button>
             </>

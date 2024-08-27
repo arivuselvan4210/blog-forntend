@@ -13,6 +13,7 @@ import { Box, Button } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { deletBolg } from "../api/api";
 
 export default function RecipeReviewCard({
   titale,
@@ -24,7 +25,7 @@ export default function RecipeReviewCard({
 }) {
   const handeldelete = async () => {
     await axios
-      .delete(`https://blog-backend-1ou4.vercel.app/blog/${id}`)
+      .delete(`${deletBolg}/${id}`)
 
       .catch((err) => console.log(err));
   };

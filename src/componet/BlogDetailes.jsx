@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Box, Button, InputLabel, TextField, Typography } from "@mui/material";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import { getBlog, updateBlog } from "../api/api";
 const BlogDetailes = () => {
   const id = useParams().id;
   const histroy = useNavigate();
@@ -11,14 +12,12 @@ const BlogDetailes = () => {
     user: localStorage.getItem("user"),
   });
   useEffect(() => {
-    axios
-      .get(`https://blog-backend-1ou4.vercel.app/blog/${id}`)
-      .then((res) => setblogs(res.data.blogs));
+    axios.get(`${getBlog}/${id}`).then((res) => setblogs(res.data.blogs));
   }, [id]);
 
   const sentreqest = async () => {
     const data = await axios
-      .put(`https://blog-backend-1ou4.vercel.app/blog/update/${id}`, {
+      .put(`${updateBlog}/${id}`, {
         titale: blogs.titale,
         desc: blogs.desc,
         user: blogs.user,
